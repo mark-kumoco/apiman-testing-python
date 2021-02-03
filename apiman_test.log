@@ -1,0 +1,11 @@
+2021-02-03 21:41:02,492:INFO:**Script Started**
+2021-02-03 21:41:02,492:DEBUG:GET URL:https://192.168.239.104:8443/apiman/system/status
+2021-02-03 21:41:02,492:DEBUG:Starting new HTTPS connection (1): 192.168.239.104:8443
+2021-02-03 21:41:02,641:DEBUG:https://192.168.239.104:8443 "GET /apiman/system/status HTTP/1.1" 200 409
+2021-02-03 21:41:02,641:DEBUG:RESULT:<Response [200]>
+2021-02-03 21:41:02,641:DEBUG:POST URL:https://192.168.239.104:8443/apiman/organizations/
+2021-02-03 21:41:02,646:DEBUG:Starting new HTTPS connection (1): 192.168.239.104:8443
+2021-02-03 21:41:02,785:DEBUG:https://192.168.239.104:8443 "POST /apiman/organizations/ HTTP/1.1" 409 143
+2021-02-03 21:41:02,785:INFO:STATUS CODE NOT 200: result.status_code=409 @https://192.168.239.104:8443/apiman/organizations/
+2021-02-03 21:41:02,785:DEBUG:JSON:{'name': 'to', 'description': 'A logical container for to'}
+2021-02-03 21:41:02,785:DEBUG:RESULT:<Response [409]>
