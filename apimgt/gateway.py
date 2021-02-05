@@ -1,5 +1,6 @@
 import os
 import sys
+import json
 import os.path
 import pathlib
 import socket
@@ -48,7 +49,7 @@ class gateway (object):
         """
         gw_reponse = self.get_system("status")
         if (gw_reponse is None):
-            logging.critical(f"No system status data: {self.ip} - is Apiman up? Correct credentials?")
+            logging.critical(f"No system status data: {self.ip} - is Apiman up? Correct credentials? etc..")
             exit(1)
         try:
             self.status = gw_reponse["up"]
@@ -204,20 +205,49 @@ class gateway (object):
             if (result == False):
                 continue
             new_org = ORG(org_name)
+            self.org_list.append(new_org)
+
             if (path.isdir(f"{org_dir}/{self.api_dir}")):
                 logging.debug(f"Found API directory: {org_dir}/{self.api_dir}")
+            else:
+                continue
+
+            try: # pathlib.Path does not pass error to try...?
+                org_api_files = pathlib.Path(f"{org_dir}/{self.api_dir}").iterdir()
+            except:
+                logging.critical(f"Error with {org_dir}/{self.api_dir}")
+                continue
+
+            for fn in org_api_files:
+                new_org.org_api_files.append(fn)
+
+            print(f"----+ {type(new_org.org_api_files)}")
 
 
-            self.org_list.append(new_org)
+ 
         
-        #if len(self.org_list == 0)
-        #    return None
-
-            
-
-
-        #print(f"%%%%{self.orgs}")
         return result
+
+    def create_apis(self, org):
+
+        for api_file in org.org_api_files:
+            with open(api_file) as json_file:
+                data = json.load(json_file)
+                for ep in data['paths']:
+                    
+                    if ep == "/hub":
+                        continue
+                    if ep.count("/") != 1:
+                        continue
+                    org.org_api_list.append(ep)
+
+
+            print(f"----+ {api_file}")
+            print(org.org_api_list)
+
+    def create_api(self, api_fn):
+        pass
+
 
     def install_plugin(self, plugin: str):
         """Try to install default plugins.

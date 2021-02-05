@@ -19,7 +19,6 @@ def main():
     apiman_un = "admin"             # Default is 'admin'
     apiman_pw = "admin123!"         # Default is 'admin123!'
 
-
     setup_logging()
 
     api_gw = GW(apiman_ip, apiman_un, apiman_pw)
@@ -28,9 +27,16 @@ def main():
  
     api_gw.create_orgs()
 
-    logging.debug(f"xx{api_gw.org_list[0].org_name}")
-    logging.debug(f"xx{api_gw.org_list[1].org_name}")
+    for org in api_gw.org_list:
+        api_gw.create_apis(org)
 
+    for org in api_gw.org_list:
+        print(org.org_name)
+        print(len(org.org_api_files))
+        for y in org.org_api_files:
+            print(y)
+        for x in org.org_api_list:
+            print(x)
     #result = api_gw.post_org(apiman_org)
     #if (result is None):
     #    logging.error(f"Problem Posting Organisation: {apiman_org}")
