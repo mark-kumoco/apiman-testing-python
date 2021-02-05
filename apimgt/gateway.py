@@ -168,7 +168,11 @@ class gateway (object):
 
         A wrapper to post_data().
         """
-        orgs = pathlib.Path(self.orgs_dir).iterdir()
+        try:
+            orgs = pathlib.Path(self.orgs_dir).iterdir()
+        except FileNotFoundError as err:
+            logging.critical(f"Error with {self.orgs_dir}")
+            exit()
         logging.debug(f"contents:{orgs}")
 
         for org in orgs:
