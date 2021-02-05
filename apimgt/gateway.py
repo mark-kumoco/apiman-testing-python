@@ -1,11 +1,14 @@
 import os
 import sys
+import os.path
 import pathlib
 import socket
 import logging
 import requests
 import ipaddress
+from os import path
 from requests.auth import HTTPBasicAuth
+
 
 class gateway (object):
 
@@ -164,13 +167,16 @@ class gateway (object):
         return result
 
     def create_orgs(self):
-        """POST Apiman organisation data.
+        """POST Apiman organisation data. Check "org" dir for organisations.
 
         A wrapper to post_data().
         """
-        try:
+        if (not path.isdir(self.orgs_dir)):
+            logging.critical(f"Not a directory: {self.orgs_dir}")
+            exit()
+        try: # pathlib.Path does not pass error to try...?
             orgs = pathlib.Path(self.orgs_dir).iterdir()
-        except FileNotFoundError as err:
+        except:
             logging.critical(f"Error with {self.orgs_dir}")
             exit()
         logging.debug(f"contents:{orgs}")
@@ -215,10 +221,12 @@ class gateway (object):
         """Try to install default plugins.
         """
         sys_item = f"plugins/availablePlugins"
-        result = self.get_data(sys_item)
-        if (result == False):
+        all_plugins = self.get_data(sys_item)
+        if (all_plugins == False):
             logging.debug(f"No Plugins found")
             return None
 
-        for item in result:
-            self.install_plugin(item["artifactId"])
+        for plugin in all_plugins:
+            if plugin["version"] != self.version:
+                logging.debug(f"Plugin version ({plugin['version']}) different from system version: ")
+            self.install_plugin(plugin["artifactId"])
