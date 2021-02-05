@@ -9,11 +9,14 @@ import ipaddress
 from os import path
 from requests.auth import HTTPBasicAuth
 
+from apimgt.organisation import organisation as ORG
+
 
 class gateway (object):
 
     api_url_base = "/apiman/"
     api_url_orgs = "organizations/"
+    api_dir = "apis/"
     api_url_systat = "system/status"
     ssl_verify = False
     ip = ""
@@ -22,6 +25,8 @@ class gateway (object):
     plugins = {}
     orgs = []
     orgs_dir = "orgs"
+    plugin_list = []
+    org_list = []
 
     def __init__(self, ip: str, un: str, pw: str, ssl_verify=False, **kwargs):
         """Set up Apiman GW variables and do some value/env checks.
@@ -150,6 +155,8 @@ class gateway (object):
         elif result.status_code == 409:
             logging.info(f"STATUS CODE NOT 200: result.status_code={result.status_code} @{self.api_url}{api_endp}")
             logging.debug(f"JSON:{jsn}")
+        #elif result.status_code >= 500:
+        #return None
 
         logging.debug(f"RESULT:{result}")
 
@@ -175,25 +182,41 @@ class gateway (object):
             logging.critical(f"Not a directory: {self.orgs_dir}")
             exit()
         try: # pathlib.Path does not pass error to try...?
-            orgs = pathlib.Path(self.orgs_dir).iterdir()
+            orgs_in_dir = pathlib.Path(self.orgs_dir).iterdir()
         except:
             logging.critical(f"Error with {self.orgs_dir}")
             exit()
-        logging.debug(f"contents:{orgs}")
-
-        for org in orgs:
+        #logging.debug(f"contents:{orgs_in_dir}")
+        
+        for org_dir in orgs_in_dir:
+            if (not path.isdir(org_dir)):
+                logging.debug(f"File found in org directory '{org_dir}': ignored")
+                continue
+            logging.debug(f"  ---create_org----")
+            org_name = os.path.basename(org_dir)
             jsn = {
-                        "name":os.path.basename(org),
-                        "description":f"A logical container for {org}"
+                        "name":org_name,
+                        "description":f"A logical container for {org_name}"
                     }
+            logging.debug(f"JSON:{jsn}")
+
             result = self.post_data(self.api_url_orgs, jsn)
             if (result == False):
-                return None
-            self.orgs.append(org)
+                continue
+            new_org = ORG(org_name)
+            if (path.isdir(f"{org_dir}/{self.api_dir}")):
+                logging.debug(f"Found API directory: {org_dir}/{self.api_dir}")
+
+
+            self.org_list.append(new_org)
+        
+        #if len(self.org_list == 0)
+        #    return None
+
             
 
 
-        print(f"%%%%{self.orgs}")
+        #print(f"%%%%{self.orgs}")
         return result
 
     def install_plugin(self, plugin: str):
@@ -206,15 +229,19 @@ class gateway (object):
             "artifactId":plugin,
             "type": "war"
         }
-        logging.debug(f"---install_plugin----")
+        logging.debug(f"  ---install_plugin----")
         logging.debug(f"JSON:{jsn}")
         result = self.post_data(f"plugins", jsn)
         if (result == None):
-            logging.error(f"Error with plugin upgrade")
+            logging.error(f"Error with plugin installation: {plugin}")
+        if result.status_code == 409:
+            logging.debug(f"409 status with plugin install status '{plugin}'', possibly installed already?")
+            self.plugin_list.append(jsn)
         if result.status_code != 200:
-            logging.debug(f"NON 200 status with plugin upgrade status '{plugin}'', possibly installed already?")
+            logging.debug(f"NON 200 status with plugin upgrade status '{plugin}'', possble error")
         else:
             logging.debug(f"Plugin Upgraded {plugin}")
+            self.plugin_list.append(jsn)
         #return result
 
     def activate_availableplugins(self):
@@ -229,4 +256,5 @@ class gateway (object):
         for plugin in all_plugins:
             if plugin["version"] != self.version:
                 logging.debug(f"Plugin version ({plugin['version']}) different from system version: ")
+                continue
             self.install_plugin(plugin["artifactId"])

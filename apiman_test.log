@@ -1,101 +1,131 @@
-2021-02-05 11:54:34,326:INFO:**Script Started**
-2021-02-05 11:54:34,326:DEBUG:GET URL:https://192.168.239.104:8443/apiman/system/status
-2021-02-05 11:54:34,331:DEBUG:Starting new HTTPS connection (1): 192.168.239.104:8443
-2021-02-05 11:54:34,591:DEBUG:https://192.168.239.104:8443 "GET /apiman/system/status HTTP/1.1" 200 406
-2021-02-05 11:54:34,592:DEBUG:JSON:{'id': 'apiman-manager-api', 'name': 'API Manager REST API', 'description': 'The API Manager REST API is used by the API Manager UI to get stuff done. You can use it to automate any API Management task you wish. For example, create new Organizations, Plans, Clients, and APIs.', 'moreInfo': 'http://www.apiman.io/latest/api-manager-restdocs.html', 'version': '2.0.0.Final', 'builtOn': '2020-09-15 15:24:38', 'up': True}
-2021-02-05 11:54:34,593:DEBUG:Apiman system summary: 192.168.239.104,up=True,version=2.0.0.Final
-2021-02-05 11:54:34,593:DEBUG:GET URL:https://192.168.239.104:8443/apiman/plugins/availablePlugins
-2021-02-05 11:54:34,594:DEBUG:Starting new HTTPS connection (1): 192.168.239.104:8443
-2021-02-05 11:54:34,889:DEBUG:https://192.168.239.104:8443 "GET /apiman/plugins/availablePlugins HTTP/1.1" 200 2810
-2021-02-05 11:54:34,890:DEBUG:JSON:[{'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-apikey-policy', 'version': '2.0.0.Final', 'name': 'API Key Policy Plugin', 'description': 'This plugin provides a policy that can help pass the API Key through to the back-end service.'}, {'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-circuit-breaker-policy', 'version': '2.0.0.Final', 'name': 'Circuit Breaker Policy', 'description': 'This plugin has policies for performing circuit breaker functionality.'}, {'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-cors-policy', 'version': '2.0.0.Final', 'name': 'CORS Policy Plugin', 'description': 'This plugin implements CORS (Cross-origin resource sharing): A method of controlling access to resources outside of an originating domain.'}, {'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-header-allow-deny-policy', 'version': '2.0.0.Final', 'name': 'Header Allow/Deny Policy Plugin', 'description': 'Provides a policy that permits or denies requests matching certain HTTP headers.'}, {'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-http-security-policy', 'version': '2.0.0.Final', 'name': 'HTTP Security Policy Plugin', 'description': 'Provides a policy which allows security-related HTTP headers to be set, which can help mitigate a range of common security vulnerabilities.'}, {'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-jsonp-policy', 'version': '2.0.0.Final', 'name': 'JSONP Policy Plugin', 'description': 'A plugin that contributes a policy that turns a standard RESTful endpoint into a JSONP compatible endpoint.'}, {'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-keycloak-oauth-policy', 'version': '2.0.0.Final', 'name': 'Keycloak OAuth Policy Plugin', 'description': 'This plugin offers an OAuth2 policy which leverages the Keycloak authentication platform as the identity and access provider.'}, {'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-log-policy', 'version': '2.0.0.Final', 'name': 'Log Headers Policy', 'description': 'A policy that logs the headers to std out.  Useful to analyse inbound HTTP traffic to the gateway when added as the first policy in the chain or to analyse outbound HTTP traffic from the gateway when added as the last policy in the chain.'}, {'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-simple-header-policy', 'version': '2.0.0.Final', 'name': 'Simple Header Policy Plugin', 'description': 'Offers a simple policy that allows request headers to be added or stripped from the HTTP request (outgoing) or HTTP response (incoming).'}, {'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-transformation-policy', 'version': '2.0.0.Final', 'name': 'XML<->JSON Transformation Policy Plugin', 'description': 'This plugin provides a very simple policy which can transform the request and/or response payload between XML and JSON.'}]
-2021-02-05 11:54:34,891:DEBUG:---install_plugin----
-2021-02-05 11:54:34,891:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-apikey-policy', 'type': 'war'}
-2021-02-05 11:54:34,891:DEBUG:POST URL:https://192.168.239.104:8443/apiman/plugins
-2021-02-05 11:54:34,892:DEBUG:Starting new HTTPS connection (1): 192.168.239.104:8443
-2021-02-05 11:54:35,166:DEBUG:https://192.168.239.104:8443 "POST /apiman/plugins HTTP/1.1" 409 129
-2021-02-05 11:54:35,166:INFO:STATUS CODE NOT 200: result.status_code=409 @https://192.168.239.104:8443/apiman/plugins
-2021-02-05 11:54:35,166:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-apikey-policy', 'type': 'war'}
-2021-02-05 11:54:35,166:DEBUG:RESULT:<Response [409]>
-2021-02-05 11:54:35,166:DEBUG:NON 200 status with plugin upgrade status 'apiman-plugins-apikey-policy'', possibly installed already?
-2021-02-05 11:54:35,166:DEBUG:---install_plugin----
-2021-02-05 11:54:35,166:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-circuit-breaker-policy', 'type': 'war'}
-2021-02-05 11:54:35,166:DEBUG:POST URL:https://192.168.239.104:8443/apiman/plugins
-2021-02-05 11:54:35,166:DEBUG:Starting new HTTPS connection (1): 192.168.239.104:8443
-2021-02-05 11:54:35,416:DEBUG:https://192.168.239.104:8443 "POST /apiman/plugins HTTP/1.1" 409 129
-2021-02-05 11:54:35,416:INFO:STATUS CODE NOT 200: result.status_code=409 @https://192.168.239.104:8443/apiman/plugins
-2021-02-05 11:54:35,416:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-circuit-breaker-policy', 'type': 'war'}
-2021-02-05 11:54:35,416:DEBUG:RESULT:<Response [409]>
-2021-02-05 11:54:35,416:DEBUG:NON 200 status with plugin upgrade status 'apiman-plugins-circuit-breaker-policy'', possibly installed already?
-2021-02-05 11:54:35,416:DEBUG:---install_plugin----
-2021-02-05 11:54:35,416:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-cors-policy', 'type': 'war'}
-2021-02-05 11:54:35,416:DEBUG:POST URL:https://192.168.239.104:8443/apiman/plugins
-2021-02-05 11:54:35,426:DEBUG:Starting new HTTPS connection (1): 192.168.239.104:8443
-2021-02-05 11:54:35,601:DEBUG:https://192.168.239.104:8443 "POST /apiman/plugins HTTP/1.1" 409 129
-2021-02-05 11:54:35,601:INFO:STATUS CODE NOT 200: result.status_code=409 @https://192.168.239.104:8443/apiman/plugins
-2021-02-05 11:54:35,601:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-cors-policy', 'type': 'war'}
-2021-02-05 11:54:35,601:DEBUG:RESULT:<Response [409]>
-2021-02-05 11:54:35,601:DEBUG:NON 200 status with plugin upgrade status 'apiman-plugins-cors-policy'', possibly installed already?
-2021-02-05 11:54:35,606:DEBUG:---install_plugin----
-2021-02-05 11:54:35,606:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-header-allow-deny-policy', 'type': 'war'}
-2021-02-05 11:54:35,606:DEBUG:POST URL:https://192.168.239.104:8443/apiman/plugins
-2021-02-05 11:54:35,606:DEBUG:Starting new HTTPS connection (1): 192.168.239.104:8443
-2021-02-05 11:54:35,811:DEBUG:https://192.168.239.104:8443 "POST /apiman/plugins HTTP/1.1" 409 129
-2021-02-05 11:54:35,811:INFO:STATUS CODE NOT 200: result.status_code=409 @https://192.168.239.104:8443/apiman/plugins
-2021-02-05 11:54:35,811:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-header-allow-deny-policy', 'type': 'war'}
-2021-02-05 11:54:35,811:DEBUG:RESULT:<Response [409]>
-2021-02-05 11:54:35,811:DEBUG:NON 200 status with plugin upgrade status 'apiman-plugins-header-allow-deny-policy'', possibly installed already?
-2021-02-05 11:54:35,811:DEBUG:---install_plugin----
-2021-02-05 11:54:35,811:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-http-security-policy', 'type': 'war'}
-2021-02-05 11:54:35,811:DEBUG:POST URL:https://192.168.239.104:8443/apiman/plugins
-2021-02-05 11:54:35,816:DEBUG:Starting new HTTPS connection (1): 192.168.239.104:8443
-2021-02-05 11:54:36,056:DEBUG:https://192.168.239.104:8443 "POST /apiman/plugins HTTP/1.1" 409 129
-2021-02-05 11:54:36,057:INFO:STATUS CODE NOT 200: result.status_code=409 @https://192.168.239.104:8443/apiman/plugins
-2021-02-05 11:54:36,057:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-http-security-policy', 'type': 'war'}
-2021-02-05 11:54:36,057:DEBUG:RESULT:<Response [409]>
-2021-02-05 11:54:36,058:DEBUG:NON 200 status with plugin upgrade status 'apiman-plugins-http-security-policy'', possibly installed already?
-2021-02-05 11:54:36,058:DEBUG:---install_plugin----
-2021-02-05 11:54:36,058:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-jsonp-policy', 'type': 'war'}
-2021-02-05 11:54:36,058:DEBUG:POST URL:https://192.168.239.104:8443/apiman/plugins
-2021-02-05 11:54:36,059:DEBUG:Starting new HTTPS connection (1): 192.168.239.104:8443
-2021-02-05 11:54:36,274:DEBUG:https://192.168.239.104:8443 "POST /apiman/plugins HTTP/1.1" 409 129
-2021-02-05 11:54:36,276:INFO:STATUS CODE NOT 200: result.status_code=409 @https://192.168.239.104:8443/apiman/plugins
-2021-02-05 11:54:36,276:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-jsonp-policy', 'type': 'war'}
-2021-02-05 11:54:36,276:DEBUG:RESULT:<Response [409]>
-2021-02-05 11:54:36,276:DEBUG:NON 200 status with plugin upgrade status 'apiman-plugins-jsonp-policy'', possibly installed already?
-2021-02-05 11:54:36,276:DEBUG:---install_plugin----
-2021-02-05 11:54:36,276:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-keycloak-oauth-policy', 'type': 'war'}
-2021-02-05 11:54:36,276:DEBUG:POST URL:https://192.168.239.104:8443/apiman/plugins
-2021-02-05 11:54:36,277:DEBUG:Starting new HTTPS connection (1): 192.168.239.104:8443
-2021-02-05 11:54:36,484:DEBUG:https://192.168.239.104:8443 "POST /apiman/plugins HTTP/1.1" 409 129
-2021-02-05 11:54:36,486:INFO:STATUS CODE NOT 200: result.status_code=409 @https://192.168.239.104:8443/apiman/plugins
-2021-02-05 11:54:36,486:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-keycloak-oauth-policy', 'type': 'war'}
-2021-02-05 11:54:36,486:DEBUG:RESULT:<Response [409]>
-2021-02-05 11:54:36,486:DEBUG:NON 200 status with plugin upgrade status 'apiman-plugins-keycloak-oauth-policy'', possibly installed already?
-2021-02-05 11:54:36,486:DEBUG:---install_plugin----
-2021-02-05 11:54:36,486:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-log-policy', 'type': 'war'}
-2021-02-05 11:54:36,486:DEBUG:POST URL:https://192.168.239.104:8443/apiman/plugins
-2021-02-05 11:54:36,488:DEBUG:Starting new HTTPS connection (1): 192.168.239.104:8443
-2021-02-05 11:54:36,656:DEBUG:https://192.168.239.104:8443 "POST /apiman/plugins HTTP/1.1" 409 129
-2021-02-05 11:54:36,656:INFO:STATUS CODE NOT 200: result.status_code=409 @https://192.168.239.104:8443/apiman/plugins
-2021-02-05 11:54:36,656:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-log-policy', 'type': 'war'}
-2021-02-05 11:54:36,656:DEBUG:RESULT:<Response [409]>
-2021-02-05 11:54:36,656:DEBUG:NON 200 status with plugin upgrade status 'apiman-plugins-log-policy'', possibly installed already?
-2021-02-05 11:54:36,656:DEBUG:---install_plugin----
-2021-02-05 11:54:36,656:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-simple-header-policy', 'type': 'war'}
-2021-02-05 11:54:36,656:DEBUG:POST URL:https://192.168.239.104:8443/apiman/plugins
-2021-02-05 11:54:36,656:DEBUG:Starting new HTTPS connection (1): 192.168.239.104:8443
-2021-02-05 11:54:36,856:DEBUG:https://192.168.239.104:8443 "POST /apiman/plugins HTTP/1.1" 409 129
-2021-02-05 11:54:36,856:INFO:STATUS CODE NOT 200: result.status_code=409 @https://192.168.239.104:8443/apiman/plugins
-2021-02-05 11:54:36,856:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-simple-header-policy', 'type': 'war'}
-2021-02-05 11:54:36,856:DEBUG:RESULT:<Response [409]>
-2021-02-05 11:54:36,856:DEBUG:NON 200 status with plugin upgrade status 'apiman-plugins-simple-header-policy'', possibly installed already?
-2021-02-05 11:54:36,856:DEBUG:---install_plugin----
-2021-02-05 11:54:36,856:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-transformation-policy', 'type': 'war'}
-2021-02-05 11:54:36,856:DEBUG:POST URL:https://192.168.239.104:8443/apiman/plugins
-2021-02-05 11:54:36,856:DEBUG:Starting new HTTPS connection (1): 192.168.239.104:8443
-2021-02-05 11:54:37,091:DEBUG:https://192.168.239.104:8443 "POST /apiman/plugins HTTP/1.1" 409 129
-2021-02-05 11:54:37,091:INFO:STATUS CODE NOT 200: result.status_code=409 @https://192.168.239.104:8443/apiman/plugins
-2021-02-05 11:54:37,091:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-transformation-policy', 'type': 'war'}
-2021-02-05 11:54:37,091:DEBUG:RESULT:<Response [409]>
-2021-02-05 11:54:37,091:DEBUG:NON 200 status with plugin upgrade status 'apiman-plugins-transformation-policy'', possibly installed already?
-2021-02-05 11:54:37,091:CRITICAL:Not a directory: orgs
+2021-02-05 14:34:40,590:INFO:**Script Started**
+2021-02-05 14:34:40,590:DEBUG:GET URL:https://192.168.239.104:8443/apiman/system/status
+2021-02-05 14:34:40,590:DEBUG:Starting new HTTPS connection (1): 192.168.239.104:8443
+2021-02-05 14:34:40,749:DEBUG:https://192.168.239.104:8443 "GET /apiman/system/status HTTP/1.1" 200 406
+2021-02-05 14:34:40,751:DEBUG:JSON:{'id': 'apiman-manager-api', 'name': 'API Manager REST API', 'description': 'The API Manager REST API is used by the API Manager UI to get stuff done. You can use it to automate any API Management task you wish. For example, create new Organizations, Plans, Clients, and APIs.', 'moreInfo': 'http://www.apiman.io/latest/api-manager-restdocs.html', 'version': '2.0.0.Final', 'builtOn': '2020-09-15 15:24:38', 'up': True}
+2021-02-05 14:34:40,751:DEBUG:Apiman system summary: 192.168.239.104,up=True,version=2.0.0.Final
+2021-02-05 14:34:40,752:DEBUG:GET URL:https://192.168.239.104:8443/apiman/plugins/availablePlugins
+2021-02-05 14:34:40,753:DEBUG:Starting new HTTPS connection (1): 192.168.239.104:8443
+2021-02-05 14:34:40,874:DEBUG:https://192.168.239.104:8443 "GET /apiman/plugins/availablePlugins HTTP/1.1" 200 2810
+2021-02-05 14:34:40,876:DEBUG:JSON:[{'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-apikey-policy', 'version': '2.0.0.Final', 'name': 'API Key Policy Plugin', 'description': 'This plugin provides a policy that can help pass the API Key through to the back-end service.'}, {'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-circuit-breaker-policy', 'version': '2.0.0.Final', 'name': 'Circuit Breaker Policy', 'description': 'This plugin has policies for performing circuit breaker functionality.'}, {'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-cors-policy', 'version': '2.0.0.Final', 'name': 'CORS Policy Plugin', 'description': 'This plugin implements CORS (Cross-origin resource sharing): A method of controlling access to resources outside of an originating domain.'}, {'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-header-allow-deny-policy', 'version': '2.0.0.Final', 'name': 'Header Allow/Deny Policy Plugin', 'description': 'Provides a policy that permits or denies requests matching certain HTTP headers.'}, {'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-http-security-policy', 'version': '2.0.0.Final', 'name': 'HTTP Security Policy Plugin', 'description': 'Provides a policy which allows security-related HTTP headers to be set, which can help mitigate a range of common security vulnerabilities.'}, {'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-jsonp-policy', 'version': '2.0.0.Final', 'name': 'JSONP Policy Plugin', 'description': 'A plugin that contributes a policy that turns a standard RESTful endpoint into a JSONP compatible endpoint.'}, {'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-keycloak-oauth-policy', 'version': '2.0.0.Final', 'name': 'Keycloak OAuth Policy Plugin', 'description': 'This plugin offers an OAuth2 policy which leverages the Keycloak authentication platform as the identity and access provider.'}, {'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-log-policy', 'version': '2.0.0.Final', 'name': 'Log Headers Policy', 'description': 'A policy that logs the headers to std out.  Useful to analyse inbound HTTP traffic to the gateway when added as the first policy in the chain or to analyse outbound HTTP traffic from the gateway when added as the last policy in the chain.'}, {'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-simple-header-policy', 'version': '2.0.0.Final', 'name': 'Simple Header Policy Plugin', 'description': 'Offers a simple policy that allows request headers to be added or stripped from the HTTP request (outgoing) or HTTP response (incoming).'}, {'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-transformation-policy', 'version': '2.0.0.Final', 'name': 'XML<->JSON Transformation Policy Plugin', 'description': 'This plugin provides a very simple policy which can transform the request and/or response payload between XML and JSON.'}]
+2021-02-05 14:34:40,876:DEBUG:  ---install_plugin----
+2021-02-05 14:34:40,876:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-apikey-policy', 'type': 'war'}
+2021-02-05 14:34:40,877:DEBUG:POST URL:https://192.168.239.104:8443/apiman/plugins
+2021-02-05 14:34:40,878:DEBUG:Starting new HTTPS connection (1): 192.168.239.104:8443
+2021-02-05 14:34:40,997:DEBUG:https://192.168.239.104:8443 "POST /apiman/plugins HTTP/1.1" 409 129
+2021-02-05 14:34:41,001:INFO:STATUS CODE NOT 200: result.status_code=409 @https://192.168.239.104:8443/apiman/plugins
+2021-02-05 14:34:41,001:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-apikey-policy', 'type': 'war'}
+2021-02-05 14:34:41,001:DEBUG:RESULT:<Response [409]>
+2021-02-05 14:34:41,001:DEBUG:409 status with plugin install status 'apiman-plugins-apikey-policy'', possibly installed already?
+2021-02-05 14:34:41,001:DEBUG:NON 200 status with plugin upgrade status 'apiman-plugins-apikey-policy'', possble error
+2021-02-05 14:34:41,001:DEBUG:  ---install_plugin----
+2021-02-05 14:34:41,001:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-circuit-breaker-policy', 'type': 'war'}
+2021-02-05 14:34:41,001:DEBUG:POST URL:https://192.168.239.104:8443/apiman/plugins
+2021-02-05 14:34:41,001:DEBUG:Starting new HTTPS connection (1): 192.168.239.104:8443
+2021-02-05 14:34:41,118:DEBUG:https://192.168.239.104:8443 "POST /apiman/plugins HTTP/1.1" 409 129
+2021-02-05 14:34:41,118:INFO:STATUS CODE NOT 200: result.status_code=409 @https://192.168.239.104:8443/apiman/plugins
+2021-02-05 14:34:41,118:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-circuit-breaker-policy', 'type': 'war'}
+2021-02-05 14:34:41,118:DEBUG:RESULT:<Response [409]>
+2021-02-05 14:34:41,118:DEBUG:409 status with plugin install status 'apiman-plugins-circuit-breaker-policy'', possibly installed already?
+2021-02-05 14:34:41,118:DEBUG:NON 200 status with plugin upgrade status 'apiman-plugins-circuit-breaker-policy'', possble error
+2021-02-05 14:34:41,118:DEBUG:  ---install_plugin----
+2021-02-05 14:34:41,118:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-cors-policy', 'type': 'war'}
+2021-02-05 14:34:41,118:DEBUG:POST URL:https://192.168.239.104:8443/apiman/plugins
+2021-02-05 14:34:41,118:DEBUG:Starting new HTTPS connection (1): 192.168.239.104:8443
+2021-02-05 14:34:41,259:DEBUG:https://192.168.239.104:8443 "POST /apiman/plugins HTTP/1.1" 409 129
+2021-02-05 14:34:41,259:INFO:STATUS CODE NOT 200: result.status_code=409 @https://192.168.239.104:8443/apiman/plugins
+2021-02-05 14:34:41,259:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-cors-policy', 'type': 'war'}
+2021-02-05 14:34:41,259:DEBUG:RESULT:<Response [409]>
+2021-02-05 14:34:41,259:DEBUG:409 status with plugin install status 'apiman-plugins-cors-policy'', possibly installed already?
+2021-02-05 14:34:41,259:DEBUG:NON 200 status with plugin upgrade status 'apiman-plugins-cors-policy'', possble error
+2021-02-05 14:34:41,259:DEBUG:  ---install_plugin----
+2021-02-05 14:34:41,259:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-header-allow-deny-policy', 'type': 'war'}
+2021-02-05 14:34:41,259:DEBUG:POST URL:https://192.168.239.104:8443/apiman/plugins
+2021-02-05 14:34:41,259:DEBUG:Starting new HTTPS connection (1): 192.168.239.104:8443
+2021-02-05 14:34:41,406:DEBUG:https://192.168.239.104:8443 "POST /apiman/plugins HTTP/1.1" 409 129
+2021-02-05 14:34:41,406:INFO:STATUS CODE NOT 200: result.status_code=409 @https://192.168.239.104:8443/apiman/plugins
+2021-02-05 14:34:41,406:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-header-allow-deny-policy', 'type': 'war'}
+2021-02-05 14:34:41,415:DEBUG:RESULT:<Response [409]>
+2021-02-05 14:34:41,415:DEBUG:409 status with plugin install status 'apiman-plugins-header-allow-deny-policy'', possibly installed already?
+2021-02-05 14:34:41,415:DEBUG:NON 200 status with plugin upgrade status 'apiman-plugins-header-allow-deny-policy'', possble error
+2021-02-05 14:34:41,415:DEBUG:  ---install_plugin----
+2021-02-05 14:34:41,415:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-http-security-policy', 'type': 'war'}
+2021-02-05 14:34:41,415:DEBUG:POST URL:https://192.168.239.104:8443/apiman/plugins
+2021-02-05 14:34:41,415:DEBUG:Starting new HTTPS connection (1): 192.168.239.104:8443
+2021-02-05 14:34:41,545:DEBUG:https://192.168.239.104:8443 "POST /apiman/plugins HTTP/1.1" 409 129
+2021-02-05 14:34:41,545:INFO:STATUS CODE NOT 200: result.status_code=409 @https://192.168.239.104:8443/apiman/plugins
+2021-02-05 14:34:41,545:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-http-security-policy', 'type': 'war'}
+2021-02-05 14:34:41,545:DEBUG:RESULT:<Response [409]>
+2021-02-05 14:34:41,545:DEBUG:409 status with plugin install status 'apiman-plugins-http-security-policy'', possibly installed already?
+2021-02-05 14:34:41,545:DEBUG:NON 200 status with plugin upgrade status 'apiman-plugins-http-security-policy'', possble error
+2021-02-05 14:34:41,545:DEBUG:  ---install_plugin----
+2021-02-05 14:34:41,545:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-jsonp-policy', 'type': 'war'}
+2021-02-05 14:34:41,545:DEBUG:POST URL:https://192.168.239.104:8443/apiman/plugins
+2021-02-05 14:34:41,545:DEBUG:Starting new HTTPS connection (1): 192.168.239.104:8443
+2021-02-05 14:34:41,662:DEBUG:https://192.168.239.104:8443 "POST /apiman/plugins HTTP/1.1" 409 129
+2021-02-05 14:34:41,662:INFO:STATUS CODE NOT 200: result.status_code=409 @https://192.168.239.104:8443/apiman/plugins
+2021-02-05 14:34:41,662:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-jsonp-policy', 'type': 'war'}
+2021-02-05 14:34:41,662:DEBUG:RESULT:<Response [409]>
+2021-02-05 14:34:41,662:DEBUG:409 status with plugin install status 'apiman-plugins-jsonp-policy'', possibly installed already?
+2021-02-05 14:34:41,662:DEBUG:NON 200 status with plugin upgrade status 'apiman-plugins-jsonp-policy'', possble error
+2021-02-05 14:34:41,662:DEBUG:  ---install_plugin----
+2021-02-05 14:34:41,662:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-keycloak-oauth-policy', 'type': 'war'}
+2021-02-05 14:34:41,662:DEBUG:POST URL:https://192.168.239.104:8443/apiman/plugins
+2021-02-05 14:34:41,662:DEBUG:Starting new HTTPS connection (1): 192.168.239.104:8443
+2021-02-05 14:34:41,770:DEBUG:https://192.168.239.104:8443 "POST /apiman/plugins HTTP/1.1" 409 129
+2021-02-05 14:34:41,770:INFO:STATUS CODE NOT 200: result.status_code=409 @https://192.168.239.104:8443/apiman/plugins
+2021-02-05 14:34:41,770:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-keycloak-oauth-policy', 'type': 'war'}
+2021-02-05 14:34:41,770:DEBUG:RESULT:<Response [409]>
+2021-02-05 14:34:41,770:DEBUG:409 status with plugin install status 'apiman-plugins-keycloak-oauth-policy'', possibly installed already?
+2021-02-05 14:34:41,770:DEBUG:NON 200 status with plugin upgrade status 'apiman-plugins-keycloak-oauth-policy'', possble error
+2021-02-05 14:34:41,770:DEBUG:  ---install_plugin----
+2021-02-05 14:34:41,770:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-log-policy', 'type': 'war'}
+2021-02-05 14:34:41,770:DEBUG:POST URL:https://192.168.239.104:8443/apiman/plugins
+2021-02-05 14:34:41,770:DEBUG:Starting new HTTPS connection (1): 192.168.239.104:8443
+2021-02-05 14:34:41,893:DEBUG:https://192.168.239.104:8443 "POST /apiman/plugins HTTP/1.1" 409 129
+2021-02-05 14:34:41,895:INFO:STATUS CODE NOT 200: result.status_code=409 @https://192.168.239.104:8443/apiman/plugins
+2021-02-05 14:34:41,895:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-log-policy', 'type': 'war'}
+2021-02-05 14:34:41,895:DEBUG:RESULT:<Response [409]>
+2021-02-05 14:34:41,895:DEBUG:409 status with plugin install status 'apiman-plugins-log-policy'', possibly installed already?
+2021-02-05 14:34:41,895:DEBUG:NON 200 status with plugin upgrade status 'apiman-plugins-log-policy'', possble error
+2021-02-05 14:34:41,895:DEBUG:  ---install_plugin----
+2021-02-05 14:34:41,896:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-simple-header-policy', 'type': 'war'}
+2021-02-05 14:34:41,896:DEBUG:POST URL:https://192.168.239.104:8443/apiman/plugins
+2021-02-05 14:34:41,897:DEBUG:Starting new HTTPS connection (1): 192.168.239.104:8443
+2021-02-05 14:34:42,008:DEBUG:https://192.168.239.104:8443 "POST /apiman/plugins HTTP/1.1" 409 129
+2021-02-05 14:34:42,009:INFO:STATUS CODE NOT 200: result.status_code=409 @https://192.168.239.104:8443/apiman/plugins
+2021-02-05 14:34:42,009:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-simple-header-policy', 'type': 'war'}
+2021-02-05 14:34:42,009:DEBUG:RESULT:<Response [409]>
+2021-02-05 14:34:42,010:DEBUG:409 status with plugin install status 'apiman-plugins-simple-header-policy'', possibly installed already?
+2021-02-05 14:34:42,010:DEBUG:NON 200 status with plugin upgrade status 'apiman-plugins-simple-header-policy'', possble error
+2021-02-05 14:34:42,010:DEBUG:  ---install_plugin----
+2021-02-05 14:34:42,010:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-transformation-policy', 'type': 'war'}
+2021-02-05 14:34:42,011:DEBUG:POST URL:https://192.168.239.104:8443/apiman/plugins
+2021-02-05 14:34:42,012:DEBUG:Starting new HTTPS connection (1): 192.168.239.104:8443
+2021-02-05 14:34:42,127:DEBUG:https://192.168.239.104:8443 "POST /apiman/plugins HTTP/1.1" 409 129
+2021-02-05 14:34:42,143:INFO:STATUS CODE NOT 200: result.status_code=409 @https://192.168.239.104:8443/apiman/plugins
+2021-02-05 14:34:42,143:DEBUG:JSON:{'version': '2.0.0.Final', 'groupId': 'io.apiman.plugins', 'artifactId': 'apiman-plugins-transformation-policy', 'type': 'war'}
+2021-02-05 14:34:42,143:DEBUG:RESULT:<Response [409]>
+2021-02-05 14:34:42,143:DEBUG:409 status with plugin install status 'apiman-plugins-transformation-policy'', possibly installed already?
+2021-02-05 14:34:42,143:DEBUG:NON 200 status with plugin upgrade status 'apiman-plugins-transformation-policy'', possble error
+2021-02-05 14:34:42,143:DEBUG:  ---create_org----
+2021-02-05 14:34:42,143:DEBUG:JSON:{'name': 'go', 'description': 'A logical container for go'}
+2021-02-05 14:34:42,143:DEBUG:POST URL:https://192.168.239.104:8443/apiman/organizations/
+2021-02-05 14:34:42,147:DEBUG:Starting new HTTPS connection (1): 192.168.239.104:8443
+2021-02-05 14:34:42,268:DEBUG:https://192.168.239.104:8443 "POST /apiman/organizations/ HTTP/1.1" 409 143
+2021-02-05 14:34:42,280:INFO:STATUS CODE NOT 200: result.status_code=409 @https://192.168.239.104:8443/apiman/organizations/
+2021-02-05 14:34:42,281:DEBUG:JSON:{'name': 'go', 'description': 'A logical container for go'}
+2021-02-05 14:34:42,281:DEBUG:RESULT:<Response [409]>
+2021-02-05 14:34:42,281:DEBUG:Found API directory: orgs\go/apis/
+2021-02-05 14:34:42,282:DEBUG:  ---create_org----
+2021-02-05 14:34:42,282:DEBUG:JSON:{'name': 'to', 'description': 'A logical container for to'}
+2021-02-05 14:34:42,282:DEBUG:POST URL:https://192.168.239.104:8443/apiman/organizations/
+2021-02-05 14:34:42,285:DEBUG:Starting new HTTPS connection (1): 192.168.239.104:8443
+2021-02-05 14:34:42,419:DEBUG:https://192.168.239.104:8443 "POST /apiman/organizations/ HTTP/1.1" 409 143
+2021-02-05 14:34:42,419:INFO:STATUS CODE NOT 200: result.status_code=409 @https://192.168.239.104:8443/apiman/organizations/
+2021-02-05 14:34:42,419:DEBUG:JSON:{'name': 'to', 'description': 'A logical container for to'}
+2021-02-05 14:34:42,419:DEBUG:RESULT:<Response [409]>
+2021-02-05 14:34:42,419:DEBUG:Found API directory: orgs\to/apis/
+2021-02-05 14:34:42,419:DEBUG:xxgo
+2021-02-05 14:34:42,419:DEBUG:xxto
+2021-02-05 14:34:42,419:INFO:**Script Finished**
