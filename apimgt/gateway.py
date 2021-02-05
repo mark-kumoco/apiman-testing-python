@@ -1,5 +1,6 @@
 import os
 import sys
+import pathlib
 import socket
 import logging
 import requests
@@ -13,6 +14,11 @@ class gateway (object):
     api_url_systat = "system/status"
     ssl_verify = False
     ip = ""
+    status = ""
+    version = ""
+    plugins = {}
+    orgs = []
+    orgs_dir = "orgs"
 
     def __init__(self, ip: str, un: str, pw: str, ssl_verify=False, **kwargs):
         """Set up Apiman GW variables and do some value/env checks.
@@ -25,7 +31,34 @@ class gateway (object):
 
         self.api_url = f"https://{self.ip}:8443{self.api_url_base}"
 
-    def check_ssl(self, ssl_verify):
+        self.check_gw_status()
+
+    def check_gw_status(self):
+        """Is the Apiman status "up"? And extract the version of Apiman.
+
+        If we have problems obtaining data, just exit.
+        """
+        gw_reponse = self.get_system("status")
+        if (gw_reponse is None):
+            logging.critical(f"No system status data: {self.ip} - is Apiman up? Correct credentials?")
+            exit(1)
+        try:
+            self.status = gw_reponse["up"]
+        except:
+            logging.critical(f"Problem Getting system 'up' status: {self.ip}")
+            exit(1)
+        if (self.status is not True):
+            logging.critical(f"system 'up' status not 'True': {self.ip}, {self.status}")
+            exit(1)
+        # Get Apiman Version:
+        if (gw_reponse["version"] is None):
+            logging.critical(f"No system version available from Apiman")
+            exit(1)
+        self.version = gw_reponse["version"]
+
+        logging.debug(f"Apiman system summary: {self.ip},up={self.status},version={self.version}")
+
+    def check_ssl(self, ssl_verify: bool):
         """Check SSL certs? If not, suppress warnings.
         """
         if ssl_verify is True:
@@ -40,7 +73,7 @@ class gateway (object):
             requests.packages.urllib3.disable_warnings(                         # pylint: disable=no-member
                 requests.packages.urllib3.exceptions.InsecureRequestWarning)    # pylint: disable=no-member
 
-    def check_gw_ip(self, ip):
+    def check_gw_ip(self, ip: str):
         """Check the submitted IP/DNS name is valid.
         Exit if nothing good is found.
         """
@@ -57,7 +90,7 @@ class gateway (object):
             exit(1)
 
     def get_data(self, api_endp: str):
-        """GET data from Apiman via REST.
+        """GET data from Apiman via REST. Returns JSON.
 
         Expect a 200 status for success.
         """
@@ -70,13 +103,18 @@ class gateway (object):
                 )
         except:
             logging.debug(f"GET Problem: {self.api_url}{api_endp}")
-            return False
-
+            return None
         # 200 means good
-        if result.status_code != 200 and result.status_code != 204 and result.status_code != 409:
+        if result.status_code != 200:
             logging.warning(f"GET result.status_code={result.status_code} @{self.api_url}{api_endp}")
+            return None
 
-        logging.debug(f"RESULT:{result}")
+        try:
+            result = result.json()
+            logging.debug(f"JSON:{result}")
+        except:
+            logging.error(f"RESPONSE is not JSON-able.")
+            result = None
 
         return result
 
@@ -99,7 +137,7 @@ class gateway (object):
                 )
         except:
             logging.debug(f"POST Problem: {self.api_url}{api_endp} with '{jsn}'")
-            return False
+            return None
 
         # 200 means good POST, 409 means POST Conflict (object exists already, most likely).
         # If neither of those return, log warning.
@@ -125,16 +163,58 @@ class gateway (object):
             return None
         return result
 
-    def post_org(self, orgName: str):
+    def create_orgs(self):
         """POST Apiman organisation data.
 
         A wrapper to post_data().
         """
-        jsn = {
-                    "name":orgName,
-                    "description":f"A logical container for {orgName}"
-                }
-        result = self.post_data(self.api_url_orgs, jsn)
-        if (result == False):
-            return None
+        orgs = pathlib.Path(self.orgs_dir).iterdir()
+        logging.debug(f"contents:{orgs}")
+
+        for org in orgs:
+            jsn = {
+                        "name":os.path.basename(org),
+                        "description":f"A logical container for {org}"
+                    }
+            result = self.post_data(self.api_url_orgs, jsn)
+            if (result == False):
+                return None
+            self.orgs.append(org)
+            
+
+
+        print(f"%%%%{self.orgs}")
         return result
+
+    def install_plugin(self, plugin: str):
+        """Try to install default plugins.
+        """
+         # Now do the activation
+        jsn = {
+            "version":self.version,
+            "groupId":"io.apiman.plugins",
+            "artifactId":plugin,
+            "type": "war"
+        }
+        logging.debug(f"---install_plugin----")
+        logging.debug(f"JSON:{jsn}")
+        result = self.post_data(f"plugins", jsn)
+        if (result == None):
+            logging.error(f"Error with plugin upgrade")
+        if result.status_code != 200:
+            logging.debug(f"NON 200 status with plugin upgrade status '{plugin}'', possibly installed already?")
+        else:
+            logging.debug(f"Plugin Upgraded {plugin}")
+        #return result
+
+    def activate_availableplugins(self):
+        """Try to install default plugins.
+        """
+        sys_item = f"plugins/availablePlugins"
+        result = self.get_data(sys_item)
+        if (result == False):
+            logging.debug(f"No Plugins found")
+            return None
+
+        for item in result:
+            self.install_plugin(item["artifactId"])
